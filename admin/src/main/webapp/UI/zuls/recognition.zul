@@ -1,0 +1,6 @@
+<vlayout viewModel="@id('vm') @init('bg.avi.numrec.web.admin.vm.RecognitionVM')">
+	<image width="200px" content="@load(vm.carPlate)"/>
+	<combobox model="@load(vm.countries)" selectedItem="@bind(vm.country)"/>
+	<textbox value="@load(vm.result)"/>
+	<button label="${labels.recognize}" upload="true,maxsize=300" onUpload="@command('recognize', uploadEvent = event)"/>
+</vlayout>

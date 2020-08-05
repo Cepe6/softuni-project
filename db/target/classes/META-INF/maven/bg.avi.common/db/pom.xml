@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>bg.avi.common</groupId>
+  <artifactId>db</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>common</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+	<!-- PostgreSQL Driver Version -->
+	<v.postgres>42.2.7</v.postgres>
+	
+	<!-- JDBC Connection Pooling Version -->
+	<v.c3p0>0.9.5.2</v.c3p0>
+	
+  	<!-- Hibernate Version -->
+	<v.hibernate>5.3.3.Final</v.hibernate>
+	
+	<!-- JPA Version -->
+	<v.jpa>2.2.5.RELEASE</v.jpa>
+	
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <!-- Hibernate Dependencies -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>${v.hibernate}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>${v.hibernate}</version>
+	</dependency>
+	
+	<!-- JPA, CRUD repository -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+        <version>${v.jpa}</version>
+    </dependency>
+		
+	<!-- PostgreSQL Driver Dependency -->
+	<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>${v.postgres}</version>
+	</dependency>
+  </dependencies>
+</project>

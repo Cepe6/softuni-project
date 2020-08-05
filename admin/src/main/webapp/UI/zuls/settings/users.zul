@@ -1,0 +1,54 @@
+<vlayout viewModel="@id('vm') @init('bg.avi.numrec.web.admin.vm.settings.UsersVM')">
+
+	<grid sclass="display_grid">
+		<columns>
+			<column hflex="3" />
+			<column hflex="3" />
+			<column hflex="2" />
+			<column hflex="2" />
+		</columns>
+		<rows>
+			<row>
+				<cell>
+					<label value="${labels.username }:" style="display: block;"/>
+					<textbox value="@bind(vm.searchObject.username)" maxlength="64" />
+				</cell>
+				<cell>
+					<label value="${labels.email }:" style="display: block;"/>
+					<textbox value="@bind(vm.searchObject.email)" maxlength="128" />
+				</cell>
+				<cell>
+					<button label="${labels.search }" onClick="@command('search')" />
+				</cell>
+				<cell>
+					<button label="${labels.clear }" onClick="@command('clear')" />
+				</cell>
+			</row>
+		</rows>
+	</grid>
+	
+	<listbox model="@load(vm.users)" mold="paging" pageSize="10">
+		<listhead>
+          	<listheader label="${labels.username }" hflex="3" />
+          	<listheader label="${labels.email }" hflex="3" />
+          	<listheader label="${labels.dateCreated }" hflex="2" />
+          	<listheader label="${labels.lastLogin }" hflex="2" />
+       	</listhead>
+        <template name="model">
+           	<listitem>
+        		<listcell>
+        			<label value="@load(each.username)" />
+        		</listcell>
+        		<listcell>
+        			<label value="@load(each.email)" />
+        		</listcell>
+        		<listcell>
+        			<label value="@load(each.dateCreated)" />
+        		</listcell>
+        		<listcell>
+        			<label value="@load(each.lastLogin)" />
+        		</listcell>
+            </listitem>
+        </template>
+	</listbox>
+</vlayout>

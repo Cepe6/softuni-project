@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<zk>
+	<preference>
+		<name>org.zkoss.zk.ui.WebApp.name</name>
+		<value>admin</value>
+	</preference>
+	
+	<system-config>
+		<label-location>/WEB-INF/labels/zk-label_bg_BG.properties</label-location>
+	</system-config>
+</zk>

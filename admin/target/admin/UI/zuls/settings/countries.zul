@@ -1,0 +1,52 @@
+<vlayout viewModel="@id('vm') @init('bg.avi.numrec.web.admin.vm.settings.CountriesVM')">
+
+	<grid sclass="display_grid">
+		<columns>
+			<column hflex="3" />
+			<column hflex="3" />
+			<column hflex="2" />
+			<column hflex="2" />
+		</columns>
+		<rows>
+			<row>
+				<cell>
+					<label value="${labels.code }:" style="display: block;"/>
+					<textbox value="@bind(vm.searchObject.code)" maxlength="3" />
+				</cell>
+				<cell>
+					<label value="${labels.name }:" style="display: block;"/>
+					<textbox value="@bind(vm.searchObject.name)" maxlength="64" />
+				</cell>
+				<cell>
+					<button label="${labels.search }" onClick="@command('search')" />
+				</cell>
+				<cell>
+					<button label="${labels.add }" onClick="@command('addEdit')" />
+				</cell>
+			</row>
+		</rows>
+	</grid>
+
+	<grid model="@load(vm.countries)" vflex="1" hflex="1">
+		<columns>
+			<column label="${labels.code }" hflex="1" />
+			<column label="${labels.name }" hflex="3" />
+			<column label="${labels.description }" hflex="6" />
+		</columns>
+		<rows>
+			<template name="model">
+				<row>
+					<cell>
+						<label value="@load(each.code)"/>
+					</cell>
+					<cell>
+						<label value="@load(each.name)"/>
+					</cell>
+					<cell>
+						<label value="@load(each.description)"/>
+					</cell>
+				</row>
+			</template>
+		</rows>
+	</grid>
+</vlayout>

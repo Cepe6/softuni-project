@@ -1,0 +1,45 @@
+<window id="addEditDlg" width="30%"
+	viewModel="@id('vm') @init('bg.avi.numrec.web.admin.vm.settings.edit.AddEditCountryVM')">
+
+	<grid sclass="modal_grid menu_background_color">
+		<columns>
+			<column />
+			<column />
+			<column hflex="min" />
+		</columns>
+		<rows>
+			<row>
+				<cell colspan="2">
+					<hlayout>
+						<label value="${labels.code}" style="display: block;" />
+					</hlayout>
+					<textbox width="100%" value="@bind(vm.addEditObject.code)" maxlength="3" />
+				</cell>
+			</row>
+			<row>
+				<cell colspan="2">
+					<hlayout>
+						<label value="${labels.name}" style="display: block;" />
+					</hlayout>
+					<textbox width="100%" value="@bind(vm.addEditObject.name)" maxlength="64" />
+				</cell>
+			</row>
+			<row>
+				<cell colspan="2">
+					<hlayout>
+						<label value="${labels.description}" style="display: block;" />
+					</hlayout>
+					<textbox width="100%" value="@bind(vm.addEditObject.description)" maxlength="1024" />
+				</cell>
+			</row>
+			<row>
+				<cell align="center">
+					<label value="${labels.cancel }" onClick="@command('cancel')" />
+				</cell>
+				<cell align="right">
+					<button label="${labels.save }"	onClick="@command('save')" />
+				</cell>
+			</row>
+		</rows>
+	</grid>
+</window>

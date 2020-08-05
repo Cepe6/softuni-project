@@ -1,0 +1,39 @@
+<vlayout>
+	<vlayout width="100%" height="100%">
+		<grid sclass="nav_menu">
+			<columns>
+				<column />
+			</columns>
+			<rows>
+				<!-- Logo -->
+				<row sclass="menu_logo">
+					<cell><image src="${Config.ICON_LOGO}" /></cell>
+				</row>
+				
+				<row onClick="@global-command('changeCenterContent', zulName='recognize')">
+					<cell><label value="${labels.recognize}" /></cell>
+				</row>
+				
+				<row onClick="@global-command('changeCenterContent', zulName='users')">
+					<cell><label value="${labels.users}" /></cell>
+				</row>
+				
+				<row onClick="@global-command('changeCenterContent', zulName='carPlates')">
+					<cell><label value="${labels.carPlates}" /></cell>
+				</row>
+				
+				<row onClick="@global-command('changeCenterContent', zulName='countries')">
+					<cell><label value="${labels.countries}" /></cell>
+				</row>
+				
+				<row onClick="@global-command('changeCenterContent', zulName='plateCodes')">
+					<cell><label value="${labels.plateCodes}" /></cell>
+				</row>
+				
+				<row onClick="@global-command('changeCenterContent', zulName='platePatterns')">
+					<cell><label value="${labels.platePatterns}" /></cell>
+				</row>
+			</rows>
+		</grid>
+	</vlayout>
+</vlayout>

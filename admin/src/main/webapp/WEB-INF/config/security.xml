@@ -1,0 +1,69 @@
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:b="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<http pattern="/login.zul"			security="none"/>
+	<http pattern="/UI/icons/**"		security="none"/>
+	<http pattern="/UI/style/**"		security="none"/>
+	
+	<global-method-security pre-post-annotations="disabled" jsr250-annotations="disabled"
+		secured-annotations="enabled" access-decision-manager-ref="serviceAccessDecisionManager"/>
+
+	<http auto-config="true" access-decision-manager-ref="accessDecisionManager" use-expressions="true">
+		<access-denied-handler error-page="/access-denied.zul"/>
+		<remember-me key="dswlgnscrtky"/>
+		<csrf disabled="true"/>
+		<headers>
+			<frame-options policy="SAMEORIGIN"/>
+		</headers>
+
+		<form-login 
+			login-page="/login.zul"
+			login-processing-url="/secureLogin"
+			authentication-failure-url="/login.zul?login_error=1"
+			always-use-default-target="true"
+			default-target-url="/"/>
+
+		<logout
+			logout-url="/logout"
+			invalidate-session="true"
+			delete-cookies="JSESSIONID"
+			logout-success-url="/"/>
+
+		<!-- https://grails-plugins.github.io/grails-spring-security-core/latest/#urls-and-authorities -->
+		<intercept-url pattern="/zkau/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/> <!-- don't use security="none" if you have security checks when changing content dynamically! -->
+		<intercept-url pattern="/**" access="IS_AUTHENTICATED_REMEMBERED"/> <!-- instead of access="ROLE_L_LOGABLE" -->
+	</http>
+
+	<authentication-manager erase-credentials="false">
+		<!-- default: admin:admin -->
+		<authentication-provider user-service-ref="UserDetailsService">
+			<password-encoder hash="bcrypt"/>
+		</authentication-provider>
+	</authentication-manager>
+
+	<b:bean id="accessDecisionManager" class="org.springframework.security.access.vote.ConsensusBased">
+		<b:constructor-arg>
+			<b:list>
+				<!-- <b:bean class="org.springframework.security.web.access.expression.WebExpressionVoter"/> -->
+				<b:bean class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+				<b:bean class="org.springframework.security.access.vote.RoleHierarchyVoter">
+					<b:constructor-arg ref="roleHierarchy"/>
+					<b:property name="rolePrefix" value=""/>
+				</b:bean>
+			</b:list>
+		</b:constructor-arg>
+	</b:bean>
+	
+	<b:bean id="serviceAccessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<b:constructor-arg>
+			<b:bean class="org.springframework.security.access.vote.RoleHierarchyVoter">
+				<b:constructor-arg ref="roleHierarchy"/>
+				<b:property name="rolePrefix" value=""/>
+			</b:bean>
+		</b:constructor-arg>
+	</b:bean>
+
+</b:beans>

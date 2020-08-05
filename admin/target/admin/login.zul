@@ -1,0 +1,51 @@
+<?page title="${labels.appName}" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<style src="/UI/style/zul-style.css"></style>
+	<style src="/UI/style/zk-components.css"></style>
+
+	<vlayout sclass="centered_vlayout main_container"
+		style="justify-content: start; text-align: center;" vflex="1">
+		<h:form name="f" action="secureLogin" method="POST"
+			xmlns:h="native">
+			<image src="${Config.ICON_LOGO }"
+				style="padding: 10% 0pt;" sclass="noselect" />
+			<div sclass="table_div" style="width: 40%">
+				<grid sclass="login_grid menu_background_color"
+					hflex="1">
+					<columns>
+						<column hflex="4" />
+						<column hflex="1" />
+						<column hflex="4" align="right" />
+					</columns>
+					<rows>
+						<row>
+							<cell colspan="3">
+								<label value="${labels.username}"
+									style="display: block;" />
+								<textbox name="username"
+									placeholder="${labels.placeholder.enterUsername}"
+									style="width: 100%;" />
+							</cell>
+						</row>
+						<row>
+							<cell colspan="3">
+								<label value="${labels.password}"
+									style="display: block;" />
+								<textbox type="password" name="password"
+									placeholder="${labels.placeholder.enterPassword}"
+									style="width: 100%;" />
+							</cell>
+						</row>
+						<row if="${not empty param.login_error}"
+							sclass="login-error">
+							<cell colspan="2">
+								<label
+									value="${ZulUtil.getLabel(SPRING_SECURITY_LAST_EXCEPTION.getClass().simpleName)}" />
+							</cell>
+						</row>
+					</rows>
+				</grid>
+			</div>
+		</h:form>
+	</vlayout>
+</zk>

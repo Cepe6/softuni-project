@@ -1,0 +1,52 @@
+<vlayout viewModel="@id('vm') @init('bg.avi.numrec.web.admin.vm.settings.UsersVM')">
+
+	<grid sclass="display_grid">
+		<columns>
+			<column hflex="3" />
+			<column hflex="3" />
+			<column hflex="3" />
+		</columns>
+		<rows>
+			<row>
+				<cell>
+					<label value="${labels.username }:" style="display: block;"/>
+					<textbox value="@bind(vm.searchObject.username)" maxlength="64" />
+				</cell>
+				<cell>
+					<label value="${labels.email }:" style="display: block;"/>
+					<textbox value="@bind(vm.searchObject.email)" maxlength="128" />
+				</cell>
+				<cell>
+					<button label="${labels.search }" onClick="@command('search')" />
+				</cell>
+			</row>
+		</rows>
+	</grid>
+	
+	<grid model="@load(vm.users)" vflex="1" hflex="1">
+		<columns>
+			<column label="${labels.username }" hflex="3" />
+			<column label="${labels.email }" hflex="3" />
+			<column label="${labels.dateCreated }" hflex="2" />
+			<column label="${labels.lastLogin }" hflex="2" />
+		</columns>
+		<rows>
+			<template name="model">
+				<row>
+					<cell>
+						<label value="@load(each.username)"/>
+					</cell>
+					<cell>
+						<label value="@load(each.email)"/>
+					</cell>
+					<cell>
+						<label value="@load(each.dateCreated)"/>
+					</cell>
+					<cell>
+						<label value="@load(each.lastLogin)"/>
+					</cell>
+				</row>
+			</template>
+		</rows>
+	</grid>
+</vlayout>
